@@ -66,16 +66,3 @@ function toggleBounce(marker) {
     marker.setAnimation(google.maps.Animation.BOUNCE);
   }
 }
-
-// testing api call for another app
-axios
-  .request({
-    method: 'GET',
-    url: 'https://cors-anywhere.herokuapp.com/https://superhero-quotes.herokuapp.com/random',
-    headers: {
-      'X-Requested-With': true,
-    },
-  })
-  .then((res) => {
-    console.log(res.data);
-  });
