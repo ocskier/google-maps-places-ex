@@ -71,9 +71,9 @@ function toggleBounce(marker) {
 axios
   .request({
     method: 'GET',
-    url: 'https://superhero-quotes.herokuapp.com/random',
+    url: 'https://cors-anywhere.herokuapp.com/https://superhero-quotes.herokuapp.com/random',
     headers: {
-      'Access-Control-Allow-Origin': '*',
+      'X-Requested-With': true,
     },
   })
   .then((res) => {
