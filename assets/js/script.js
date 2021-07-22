@@ -72,6 +72,9 @@ axios
   .request({
     method: 'GET',
     url: 'https://superhero-quotes.herokuapp.com/random',
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
   })
   .then((res) => {
     console.log(res.data);
