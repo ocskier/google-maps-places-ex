@@ -53,7 +53,7 @@ function handleInfoWindow(marker, place) {
   infowindow && infowindow.close();
   const request = {
     placeId: place.place_id,
-    fields: ['opening_hours'],
+    fields: ['opening_hours', 'url'],
   };
   async function callback(placeDetail, status) {
     let hours = [];
@@ -71,7 +71,11 @@ function handleInfoWindow(marker, place) {
           : ''
       }
         <div>
-          <p>${place.name}</p>
+          <a href=${
+            placeDetail.url
+          } style="margin-bottom: 0.3rem" target="_blank" rel="noreferrer">${
+        place.name
+      }</a>
           ${
             hours
               ? `<p>Open: ${hours[0].open.hours}:${
