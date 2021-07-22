@@ -41,20 +41,27 @@ function createMarker(place) {
     animation: google.maps.Animation.DROP,
     title: place.name,
   });
-  marker.addListener('mouseover', function () {
+  marker.addListener('mouseover', () => handleInfoWindow(marker, place));
+  marker.addListener('mouseout', () => {
     toggleBounce(marker);
-    infowindow && infowindow.close();
-    const request = {
-      placeId: place.place_id,
-      fields: ['opening_hours'],
-    };
-    async function callback(placeDetail, status) {
-      let hours = [];
-      if (status == google.maps.places.PlacesServiceStatus.OK) {
-        hours = placeDetail.opening_hours?.periods;
-      }
-      infowindow = new google.maps.InfoWindow({
-        content: `
+  });
+  marker.addListener('click', () => handleInfoWindow(marker, place));
+}
+
+function handleInfoWindow(marker, place) {
+  toggleBounce(marker);
+  infowindow && infowindow.close();
+  const request = {
+    placeId: place.place_id,
+    fields: ['opening_hours'],
+  };
+  async function callback(placeDetail, status) {
+    let hours = [];
+    if (status == google.maps.places.PlacesServiceStatus.OK) {
+      hours = placeDetail.opening_hours?.periods;
+    }
+    infowindow = new google.maps.InfoWindow({
+      content: `
       <div style="display: flex;">
       ${
         place?.photos
@@ -84,18 +91,14 @@ function createMarker(place) {
           <p>${place.vicinity}</p>
         </div>
       </div>`,
-      });
-      infowindow.open({
-        anchor: marker,
-        map,
-        shouldFocus: false,
-      });
-    }
-    service.getDetails(request, callback);
-  });
-  marker.addListener('mouseout', function () {
-    toggleBounce(marker);
-  });
+    });
+    infowindow.open({
+      anchor: marker,
+      map,
+      shouldFocus: false,
+    });
+  }
+  service.getDetails(request, callback);
 }
 
 function toggleBounce(marker) {
