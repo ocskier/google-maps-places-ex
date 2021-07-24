@@ -2,6 +2,15 @@ let map;
 let service;
 let infowindow;
 
+async function pageviewcb() {
+  try {
+    const { data } = await axios.get(
+      'https://api.countapi.xyz/hit/ocskier.github.io/google-maps-places-ex'
+    );
+    document.getElementById('visits').innerHTML = 'Page views: ' + data.value;
+  } catch (err) {}
+}
+
 function initMap() {
   navigator.geolocation.getCurrentPosition(
     async ({ coords: { latitude: lat, longitude: lon } }) => {
@@ -112,3 +121,5 @@ function toggleBounce(marker) {
     marker.setAnimation(google.maps.Animation.BOUNCE);
   }
 }
+
+pageviewcb();

@@ -24,6 +24,7 @@
       }
       .header {
         color: white;
+        margin-top: 1.5rem;
         padding-top: 1rem;
         width: 100%;
         text-align: center;
@@ -50,6 +51,11 @@
         min-height: 28em;
         cursor: pointer;
       }
+      label {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+      }
       video {
         position: absolute;
         width: 100%;
@@ -63,6 +69,7 @@
     <video autoplay loop muted playsinline src="./assets/videos/bar-vid.mp4"></video>
     <div class="app">
       <h1 class="header">Google Maps Places</h1>
+      <label class="radiuus secondary label" id="visits"></label>
       <div class="card">
         <div class="card-divider">Look below for local hangouts 🥂</div>
         <div class="card-section">
@@ -79,7 +86,7 @@
       async
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBnyyts1Sjyg2-DdrovYB6bWQA8wy37Tk&callback=initMap&libraries=places"
     >
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js" integrity="sha512-nOQuvD9nKirvxDdvQ9OMqe2dgapbPB7vYAMrzJihw5m+aNcf0dX53m6YxM4LgA9u8e9eg9QX+/+mPu8kCNpV2A==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js" integrity="sha512-nOQuvD9nKirvxDdvQ9OMqe2dgapbPB7vYAMrzJihw5m+aNcf0dX53m6YxM4LgA9u8e9eg9QX+/+mPu8kCNpV2A==" crossorigin="anonymous" referrerpolicy="no-referrer">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./assets/js/script.js"></script>
